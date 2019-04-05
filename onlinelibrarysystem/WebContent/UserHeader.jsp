@@ -41,7 +41,7 @@
     <li class="dropdown" style="margin-top:-50px;"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome :${sessionScope.user1.firstName}${sessionScope.user1.lastName}<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="StudentViewProfile.jsp">View Profile</a></li>
-          <li><a href="StudentUpdate.jsp">Update Profile</a></li>
+          <li><a href="StudentUpdate1.jsp">Update Profile</a></li>
           <li><a href="ChangePassword.jsp">Change Password</a></li>
         </ul>
       </li>

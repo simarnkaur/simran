@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
 		
 		String s1=request.getParameter("email");
 		String s2=request.getParameter("pass");
-		
+	    
 		
 		
 		LoginDao loginDaoObj=new LoginDaoImpl();
@@ -50,7 +50,6 @@ public class LoginController extends HttpServlet {
 			else if(role.equals("user")) {
 				StudentDao userDaoObj=new StudentDaoImpl();
 				Student userObj=userDaoObj.getUser(s1);
-				
 				
 				HttpSession session=request.getSession();
 				session.setAttribute("user1",userObj);

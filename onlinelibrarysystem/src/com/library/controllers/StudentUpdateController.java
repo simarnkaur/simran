@@ -27,19 +27,19 @@ public class StudentUpdateController extends HttpServlet {
 		response.setContentType("text/html");
     	PrintWriter out=response.getWriter();
     	
-    	String s6=request.getParameter("email");
-    	String s1=request.getParameter("pwd");
-    	String s2=request.getParameter("fName");
-    	String s3=request.getParameter("lName");
-    	String s4=request.getParameter("gender");
-    	String s5=request.getParameter("dob");
+    	String s1=request.getParameter("email");
+    	String s2=request.getParameter("pwd");
+    	String s3=request.getParameter("fName");
+    	String s4=request.getParameter("lName");
+    	String s5=request.getParameter("gender");
+    	String s6=request.getParameter("dob");
     
     	
     	//Converting String into java.util.Date
-    	SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+    	SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
     	Date dob=null;
 		try {
-			dob = sdf.parse(s5);
+			dob = sdf.parse(s6);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +50,8 @@ public class StudentUpdateController extends HttpServlet {
     	stdObj.setFirstName(s3);
     	stdObj.setLastName(s4);
     	stdObj.setGender(s5);
+    	
+    	
     	stdObj.setDateOfBirth(dob);
 
     	StudentDao dao=new StudentDaoImpl();
@@ -63,7 +65,7 @@ public class StudentUpdateController extends HttpServlet {
     																			
     	}
     	else {
-    		RequestDispatcher rd=request.getRequestDispatcher("StudentUpdate.jsp");
+    		RequestDispatcher rd=request.getRequestDispatcher("StudentUpdate1.jsp");
     		rd.forward(request, response);
     				
     	}    	

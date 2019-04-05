@@ -3,6 +3,7 @@ package com.library.daosimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.library.daos.StudentDao;
@@ -63,7 +64,12 @@ public class StudentDaoImpl implements StudentDao {
 			  stud.setFirstName(rs.getString(3));
 			  stud.setLastName(rs.getString(4));
 			  stud.setGender(rs.getString(5));
-			  stud.setDateOfBirth(rs.getDate(6));
+			  
+			  String date=rs.getString(6);
+			  
+			  SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yy");
+			  java.util.Date d=sdf.parse(date);
+			  stud.setDateOfBirth(d);
 			  
 			  return stud;		  
 			  
@@ -80,7 +86,7 @@ public class StudentDaoImpl implements StudentDao {
 	public boolean updateStudent(Student StudObj) {
 		try {
 			Connection conn=ConnectionProvider.getConnection();
-			PreparedStatement ps=conn.prepareStatement("update studenttab set password=?,firstname=?,lastname=?,gender=?,dateofbirth=? where email=?");
+			PreparedStatement ps=conn.prepareStatement("update studenttab set password=?,firstname=?,lastname=?,gender=?,dob=? where email=?");
 			ps.setString(1,StudObj.getPassword());
 			ps.setString(2,StudObj.getFirstName());
 			ps.setString(3,StudObj.getLastName());
@@ -90,14 +96,11 @@ public class StudentDaoImpl implements StudentDao {
 			Date dateOfBirth=StudObj.getDateOfBirth();
 			long l=dateOfBirth.getTime();
 			java.sql.Date dob=new java.sql.Date(l);
-			ps.setDate(5, dob);
+			ps.setDate(5,dob);
 			
 			int i=ps.executeUpdate();
 			if(i!=0){
 				return true;
-			}
-			else {
-				return false;
 			}
 		}
 			catch(Exception e){
@@ -116,8 +119,14 @@ public class StudentDaoImpl implements StudentDao {
 			ps.setString(2,email);
 			int i=ps.executeUpdate();
 			if(i!=0){
+				PreparedStatement p1=conn.prepareStatement("insert into login values(?)");
+				ps.setString(1,newPassword);
+				int i1=ps.executeUpdate();
+				if(i1!=0)
+				{
+				 p1.setString(1,newPassword);
 				return true;
-			}
+				}}
 			else {
 				return false;
 			}
@@ -127,5 +136,4 @@ public class StudentDaoImpl implements StudentDao {
 			}			
 		return false;
 	}
-
 }

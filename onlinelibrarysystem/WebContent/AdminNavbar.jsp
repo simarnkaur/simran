@@ -20,13 +20,11 @@
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Category <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="AddCategory.jsp">Add Category</a></li>
-           <li><a href="#">Delete Category</a></li>
-          <li><a href="#">Update Category</a></li>
-          <li><a href="ViewCategories.jsp">View Category</a></li>
+           <li><a href="viewAllCategories">View Category</a></li>
           </ul>
       </li>   
           <li style="margin-left:850px"><a href="Homepage.jsp"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
     </ul>
-  </div>
+  
 </nav>
    
