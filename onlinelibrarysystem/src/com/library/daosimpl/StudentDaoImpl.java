@@ -16,18 +16,17 @@ public class StudentDaoImpl implements StudentDao {
 	public boolean registerStudent(Student StudObj) {
 		try {
 			Connection conn=ConnectionProvider.getConnection();
-			PreparedStatement ps=conn.prepareStatement("insert into studenttab values(?,?,?,?,?,?)");
+			PreparedStatement ps=conn.prepareStatement("insert into studenttab values(?,?,?,?,?)");
 			ps.setString(1,StudObj.getEmail());
-			ps.setString(2,StudObj.getPassword());
-			ps.setString(3,StudObj.getFirstName());
-			ps.setString(4,StudObj.getLastName());
-			ps.setString(5,StudObj.getGender());
+			ps.setString(2,StudObj.getFirstName());
+			ps.setString(3,StudObj.getLastName());
+			ps.setString(4,StudObj.getGender());
 			
 			/*Converting java.util.Date into java.sql.Date*/
 			Date dateOfBirth=StudObj.getDateOfBirth();
 			long l=dateOfBirth.getTime();
 			java.sql.Date dob=new java.sql.Date(l);
-			ps.setDate(6, dob);
+			ps.setDate(5, dob);
 			
 			int i=ps.executeUpdate();
 			if(i!=0){

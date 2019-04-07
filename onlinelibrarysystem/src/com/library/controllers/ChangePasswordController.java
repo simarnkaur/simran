@@ -22,11 +22,11 @@ import com.library.models.Student;
 public class ChangePasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String s1=request.getParameter("npass");
-		String s2=request.getParameter("cpass");
 		HttpSession session=request.getSession();
 		Student std=(Student)session.getAttribute("user1");
 		
+		String s1=request.getParameter("npass");
+		String s2=request.getParameter("cpass");
 		if(s1.equals(s2)){
 			StudentDao obj=new StudentDaoImpl();
 			boolean obj2=obj.changePassword(std.getEmail(),s1,s2);
